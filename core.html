@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Disciplines // Muhammad Saad Ali</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #080808;
+            --surface-black: #111111;
+            --border-classic: rgba(255, 255, 255, 0.2);
+            --border-strong: #ffffff;
+            --text-heading: #ffffff;
+            --text-body: #d1d1d1;
+            --text-muted: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-body);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 8%;
+            background: var(--bg-dark);
+            border-bottom: 2px solid var(--border-classic);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .brand-logo span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .nav-items {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-items a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-items a:hover {
+            color: var(--text-heading);
+            border-bottom: 1px solid var(--text-heading);
+        }
+
+        .nav-btn {
+            padding: 8px 24px;
+            border: 1px solid var(--border-strong);
+            color: var(--text-heading) !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--text-heading);
+            color: var(--bg-dark) !important;
+        }
+
+        .disciplines-header {
+            text-align: center;
+            padding: 80px 8% 40px;
+        }
+
+        .header-tag {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: inline-block;
+            border-bottom: 1px solid var(--border-classic);
+            padding-bottom: 4px;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .header-subtitle {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .disciplines-container {
+            padding: 40px 8% 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .discipline-card {
+            background: var(--surface-black);
+            border: 1px solid var(--border-classic);
+            padding: 50px;
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+
+        .discipline-card:hover {
+            border-color: var(--border-strong);
+        }
+
+        .discipline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-classic);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .discipline-icon {
+            font-size: 2.2rem;
+            color: var(--text-heading);
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--border-classic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-dark);
+        }
+
+        .discipline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .discipline-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+
+        .discipline-body {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .discipline-description {
+            font-size: 1.1rem;
+            color: var(--text-body);
+            line-height: 1.9;
+        }
+
+        .discipline-description p {
+            margin-bottom: 18px;
+        }
+
+        .discipline-details {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-classic);
+            padding: 30px;
+        }
+
+        .details-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-classic);
+            padding-bottom: 8px;
+        }
+
+        .tech-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--text-heading);
+            border: 1px solid var(--border-classic);
+            padding: 4px 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--surface-black);
+        }
+
+        .feature-bullets {
+            list-style: none;
+        }
+
+        .feature-bullets li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-bullets li i {
+            font-size: 0.7rem;
+            color: var(--text-heading);
+        }
+
+        .vintage-footer {
+            background: var(--surface-black);
+            border-top: 2px solid var(--border-classic);
+            padding: 70px 8% 30px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border-classic);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 320px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-classic);
+            padding-bottom: 6px;
+            display: inline-block;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-heading);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-classic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--bg-dark);
+        }
+
+        .social-btn:hover {
+            background: var(--text-heading);
+            color: var(--bg-dark);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom span {
+            color: var(--text-heading);
+        }
+
+        @media (max-width: 900px) {
+            .discipline-body {
+                grid-template-columns: 1fr;
+            }
+
+            .header-title {
+                font-size: 2.5rem;
+            }
+
+            .discipline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .nav-items {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">SKD <span>DEVELOPMENT</span></a>
+        <ul class="nav-items">
+            <li><a href="index.html">Profile</a></li>
+            <li><a href="core.html">Disciplines</a></li>
+            <li><a href="contact.html" class="nav-btn">Connect</a></li>
+        </ul>
+    </nav>
+
+    <header class="disciplines-header">
+        <span class="header-tag">TECHNICAL ARCHITECTURE</span>
+        <h1 class="header-title">Core Disciplines</h1>
+        <p class="header-subtitle">A detailed exposition of expertise spanning web craft, backend logic, and intelligent systems design.</p>
+    </header>
+
+    <main class="disciplines-container" id="disciplines">
+        <article class="discipline-card">
+            <div class="discipline-header">
+                <div class="title-group">
+                    <div class="discipline-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h2 class="discipline-title">Full-Stack Web Development</h2>
+                </div>
+                <div class="discipline-number">I</div>
+            </div>
+
+            <div class="discipline-body">
+                <div class="discipline-description">
+                    <p>Building modern web applications requires a balance between elegant user experience and structural integrity. As a web developer, I design responsive, accessible, and fast web platforms crafted to leave an impression.</p>
+                    <p>My frontend philosophy emphasizes structured HTML, bespoke CSS architectures, clean layout systems, and smooth interactivity.</p>
+                </div>
+
+                <div class="discipline-details">
+                    <h3 class="details-heading">Technologies & Focus</h3>
+                    <ul class="tech-list">
+                        <li class="tech-tag">HTML5 / CSS3</li>
+                        <li class="tech-tag">JavaScript</li>
+                        <li class="tech-tag">Responsive Layouts</li>
+                        <li class="tech-tag">UI/UX Design</li>
+                    </ul>
+
+                    <h3 class="details-heading">Capabilities</h3>
+                    <ul class="feature-bullets">
+                        <li><i class="fa-solid fa-square"></i> Single & Multi-Page Web Platforms</li>
+                        <li><i class="fa-solid fa-square"></i> Glassmorphic & Vintage Aesthetic Themes</li>
+                        <li><i class="fa-solid fa-square"></i> Performance & Mobile Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <article class="discipline-card">
+            <div class="discipline-header">
+                <div class="title-group">
+                    <div class="discipline-icon">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h2 class="discipline-title">Backend & Systems Engineering</h2>
+                </div>
+                <div class="discipline-number">II</div>
+            </div>
+
+            <div class="discipline-body">
+                <div class="discipline-description">
+                    <p>The strength of any digital solution lies beneath the surface. My backend engineering work centers around efficiency, computational logic, and memory-aware software design.</p>
+                    <p>Leveraging low-level execution with C alongside scalable scripting in Python, I build high-performance logic and server infrastructure.</p>
+                </div>
+
+                <div class="discipline-details">
+                    <h3 class="details-heading">Technologies & Focus</h3>
+                    <ul class="tech-list">
+                        <li class="tech-tag">C Language</li>
+                        <li class="tech-tag">Python</li>
+                        <li class="tech-tag">Logic Systems</li>
+                        <li class="tech-tag">API Integration</li>
+                    </ul>
+
+                    <h3 class="details-heading">Capabilities</h3>
+                    <ul class="feature-bullets">
+                        <li><i class="fa-solid fa-square"></i> Low-Level Memory & Algorithm Logic</li>
+                        <li><i class="fa-solid fa-square"></i> Python Automation & Server Scripts</li>
+                        <li><i class="fa-solid fa-square"></i> System Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <article class="discipline-card">
+            <div class="discipline-header">
+                <div class="title-group">
+                    <div class="discipline-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h2 class="discipline-title">Artificial Intelligence Development</h2>
+                </div>
+                <div class="discipline-number">III</div>
+            </div>
+
+            <div class="discipline-body">
+                <div class="discipline-description">
+                    <p>Artificial Intelligence represents the frontier of modern software architecture. I specialize in integrating local and cloud-based AI models into actionable software systems.</p>
+                    <p>From setting up self-hosted AI servers to engineering autonomous voice assistants, I focus on building smart, adaptable software.</p>
+                </div>
+
+                <div class="discipline-details">
+                    <h3 class="details-heading">Technologies & Focus</h3>
+                    <ul class="tech-list">
+                        <li class="tech-tag">Ollama Infrastructure</li>
+                        <li class="tech-tag">Voice Assist AI</li>
+                        <li class="tech-tag">Prompt Design</li>
+                        <li class="tech-tag">Automation Agents</li>
+                    </ul>
+
+                    <h3 class="details-heading">Capabilities</h3>
+                    <ul class="feature-bullets">
+                        <li><i class="fa-solid fa-square"></i> Voice-Controlled Assistant Development</li>
+                        <li><i class="fa-solid fa-square"></i> Self-Hosted Local AI Server Setup</li>
+                        <li><i class="fa-solid fa-square"></i> Smart Automation Workflows</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="vintage-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SKD DEVELOPMENT</h3>
+                <p>Founded by Muhammad Saad Ali. Dedicated to full-stack web engineering, low-level execution, and intelligent AI architectures.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Profile & Bio</a></li>
+                    <li><a href="core.html">Core Disciplines</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Focus Areas</h4>
+                <ul class="footer-links">
+                    <li><a href="#disciplines">Full-Stack Web Dev</a></li>
+                    <li><a href="#disciplines">C & Python Logic</a></li>
+                    <li><a href="#disciplines">Self-Hosted AI Agents</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Get in touch for collaborative development and software inquiries.</p>
+                <div class="footer-socials">
+                    <a href="tel:03445075224" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+                    <a href="mailto:skddevelapor111@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 <span>SKD DEVELOPMENT</span>. ALL RIGHTS RESERVED.</p>
+            <p>DESIGNED FOR <span>MUHAMMAD SAAD ALI</span></p>
+        </div>
+    </footer>
+
+</body>
+</html>
